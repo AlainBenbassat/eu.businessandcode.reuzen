@@ -20,10 +20,12 @@ function civicrm_api3_riv_Getgiantmapdata($params) {
         civicrm_address a on a.contact_id = c.id and a.is_primary = 1
       where
         c.contact_type = 'Individual'
-      and c.contact_sub_type = concat(0x01, 'Reus', 0x01)
-      and a.postal_code is not null
-      and c.is_deceased = 0
-      and c.is_deleted = 0
+        and c.contact_sub_type = concat(0x01, 'Reus', 0x01)
+        and a.postal_code is not null
+        and c.is_deceased = 0
+        and c.is_deleted = 0
+      order BY 
+        a.postal_code
     ";
 
     $dao = CRM_Core_DAO::executeQuery($sql);
